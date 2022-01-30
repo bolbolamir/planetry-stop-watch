@@ -1,7 +1,15 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
 :root {
     font-size: 10px;
-    --primary-color: ;
-    --accent-color: ;
+    font-weight: bold;
     height: 100%;
 }
 *,
@@ -14,11 +22,41 @@
     margin: 0;
     font-family: "Josefin Sans", sans-serif;
 }
+@keyframes transformYUpAndDown {
+    from {
+        transform: translateY(-8px);
+    }
+    to {
+        transform: translateY(3px);
+    }
+}
 
+@keyframes scaleUpAndDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
 body {
+    --primary-color: #aaa7a7;
+    --bg-color: #fcfcfc;
+    --accent-color: ;
+    --primary-color-text: #151515;
+    --outline-color: hsl(60, 100%, 50%);
+    color: var(--primary-color-text);
+    background-color: var(--bg-color);
+    border-color: var(--primary-color-text);
     height: 100%;
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+}
+body[data-theme="dark"] {
+    --primary-color: ;
+    --bg-color: #151515;
+    --primary-color: #e2e1e0;
+    --accent-color: ;
+    --primary-color-text: #fcfcfc;
 }
 
 img,
@@ -43,4 +81,182 @@ h4,
 h5,
 h6 {
     overflow-wrap: break-word;
+}
+
+.dash-board {
+    padding: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dash-board button:first-child {
+    background-color: var(--primary-color-text);
+    border: 2px solid;
+    width: 50px;
+    border-radius: 5000px;
+    color: var(--bg-color);
+
+    height: 50px;
+}
+.dash-board button:first-child:focus {
+    opacity: 0.94;
+    animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
+}
+.dash-board button:first-child:focus,
+.dash-board button:first-child:hover {
+    color: var(--primary-color-text);
+    background-color: var(--bg-color);
+}
+
+.dash-board button:last-child {
+    background-color: transparent;
+    border: 2px solid;
+    width: 50px;
+    font-size: 3rem;
+    color: var(--bg-color);
+    background-color: var(--primary-color-text);
+    padding-top: 3px;
+    border-radius: 5000px;
+    height: 50px;
+}
+.dash-board button:last-child:focus {
+    opacity: 0.94;
+    animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
+    border-color: var(--outline-color);
+}
+.dash-board button:last-child:focus,
+.dash-board button:last-child:hover {
+    color: var(--primary-color-text);
+    background-color: var(--bg-color);
+}
+.dash-board .planet {
+    filter: blur(40px);
+    width: 60px;
+    height: 60px;
+    animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
+}
+.dash-board .wrapper {
+    position: relative;
+}
+/* .dash-board .wrapper img:last-child {
+    position: absolute;
+    z-index: 0;
+} */
+.dash-board .wrapper img:first-child {
+    position: absolute;
+    z-index: 1;
+    filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
+}
+.card {
+    width: calc(100% - 40px);
+    position: absolute;
+    top: 10%;
+    height: 50%;
+    padding: 20px;
+    margin: 20px;
+    overflow: hidden;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(44, 44, 44, 0.075),
+        0 2px 2px rgba(24, 23, 23, 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px rgba(0, 0, 0, 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.action-button {
+    border-radius: 99999px;
+    border: solid 1px black;
+    background-color: transparent;
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.8rem;
+    /* width: clamp(10rem, 10rem + 200vw , 12rem); */
+    width: 10rem;
+    padding-top: 3px;
+    left: calc(50% - 5rem);
+}
+.action-button:hover,
+.action-button:focus {
+    background-color: var(--primary-color-text);
+    color: var(--bg-color);
+}
+.action-button > div {
+    width: 10px;
+    background-color: red;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+    right: 0px;
+    top: 0px;
+}
+.action-button > div[data-state="started"] {
+    background-color: rgb(167, 223, 84);
+}
+.stop-watch {
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    color: black;
+    font-size: calc(2.2rem + 5.3vw);
+    font-weight: 500;
+    min-width: fit-content;
+    text-align: center;
+    /* background-color: red; */
+}
+
+.colon {
+    display: inline-block;
+    transform: translateY(-1rem);
+}
+
+.planets {
+    padding-top: 3.5px;
+    position: absolute;
+    bottom: 8rem;
+    width: 16rem;
+    height: 3.3rem;
+    left: calc(50% - 8rem);
+    font-size: 2rem;
+    padding-left: 8px;
+    border-radius: 99999px;
+    background-color: var(--primary-color-text);
+    color: var(--bg-color);
+}
+
+.planets:hover,
+.planets:focus {
+    background-color: var(--bg-color);
+    color: var(--primary-color-text);
+}
+
+.modal {
+    position: fixed;
+    top: 40%;
+    height: 10%;
+}
+
+.reset-buton {
+    border-radius: 99999px;
+    border: solid 1px black;
+    background-color: transparent;
+    position: absolute;
+    /* bottom: 2rem; */
+    font-size: 1.2rem;
+    z-index: 2;
+    /* width: clamp(10rem, 10rem + 200vw , 12rem); */
+    width: 6rem;
+    padding-top: 3px;
+}
+
+.reset-buton:hover,
+.reset-buton:focus {
+    background-color: var(--primary-color-text);
+    color: var(--bg-color);
 }

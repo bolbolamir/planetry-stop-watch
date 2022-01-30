@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="preconnect"
+            href="https://img.icons8.com/color/50/000000/mars-planet.png"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -10,8 +14,63 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
-        <script src="main.js" type="module"></script>
         <title>Stop Watch</title>
     </head>
-    <body></body>
+    <body data-theme="dark">
+        <main>
+            <article class="card">
+                <form>
+                    <button type="button" class="reset-buton" onclick="resetStopWatch(stopWatch)">Reset</button>
+                    <output class="stop-watch"
+                        ><span class="hour">00</span>
+                        <span class="colon">:</span>
+                        <span class="minute">00</span>
+                        <span class="colon">:</span>
+                        <span class="second">00</span></output
+                    >
+                    <label for="planet" class="visually-hidden"
+                        >Choose the planet in which you want to calculate
+                        elapsed time</label
+                    >
+                    <select name="" id="planet" class="planets">
+                        <option value="Earth">Earth</option>
+                        <option value="Mercury">Mercury</option>
+                        <option value="Venus">Venus</option>
+                        <option value="Moon">Moon</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Jupiter">Jupiter</option>
+                        <option value="Uranus">Uranus</option>
+                    </select>
+                    <button
+                        type="button"
+                        class="action-button"
+                        onclick="toggleStopWatch(stopWatch)"
+                    >
+                        Start
+                        <div dtat-state="stopped"></div>
+                    </button>
+                </form>
+            </article>
+        </main>
+        <aside class="dash-board">
+            <button type="button" class="theme-toggle" onclick="toggleTheme()">
+                Toggle
+            </button>
+            <div class="wrapper">
+                <img
+                    class="planet"
+                    alt=""
+                    src="https://img.icons8.com/color/50/000000/mars-planet.png"
+                />
+                <img
+                    class="planet"
+                    alt=""
+                    src="https://img.icons8.com/color/50/000000/mars-planet.png"
+                />
+            </div>
+
+            <button type="button" class="help-modal">?</button>
+        </aside>
+    </body>
+    <script src="main.js"></script>
 </html>
