@@ -1,7 +1,6 @@
 :root {
     font-size: 10px;
-    --primary-color: ;
-    --accent-color: ;
+    font-weight: bold;
     height: 100%;
 }
 *,
@@ -14,11 +13,40 @@
     margin: 0;
     font-family: "Josefin Sans", sans-serif;
 }
+@keyframes transformYUpAndDown {
+    from {
+        transform: translateY(-8px);
+    }
+    to {
+        transform: translateY(3px);
+    }
+}
 
+@keyframes scaleUpAndDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
 body {
+    --primary-color: ;
+    --bg-color: #fcfcfc;
+    --accent-color: ;
+    --primary-color-text: #151515;
+    --outline-color: hsl(60, 100%, 50%);
+    color: var(--primary-color-text);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color-text);
     height: 100%;
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+}
+body[data-theme="dark"] {
+    --primary-color: ;
+    --bg-color: #151515;
+    --accent-color: ;
+    --primary-color-text: #fcfcfc;
 }
 
 img,
@@ -43,4 +71,50 @@ h4,
 h5,
 h6 {
     overflow-wrap: break-word;
+}
+
+.dash-board {
+    padding: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dash-board button:first-child {
+    background-color: transparent;
+    border: 2px solid;
+    width: 50px;
+    border-radius: 5000px;
+    height: 50px;
+}
+.dash-board button:first-child:focus {
+    opacity: 0.94;
+    animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
+}
+
+.dash-board button:last-child {
+    background-color: transparent;
+    border: 2px solid;
+    width: 50px;
+    font-size: 3rem;
+    color: var(--bg-color);
+    background-color: var(--primary-color-text);
+    padding-top: 3px;
+    border-radius: 5000px;
+    height: 50px;
+}
+.dash-board button:last-child:focus {
+    opacity: 0.94;
+    animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
+    border-color: var(--outline-color);
+}
+.dash-board .planet {
+    width: 60px;
+    height: 60px;
+    animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
 }
