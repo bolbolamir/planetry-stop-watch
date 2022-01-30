@@ -17,12 +17,12 @@
         <main>
             <article class="card">
                 <form>
-                    <output class="strop-watch">00 : 00 : 00</output>
+                    <output class="stop-watch">00 : 00 : 00</output>
                     <label for="planet" class="visually-hidden"
                         >Choose the planet in which you want to calculate
                         elapsed time</label
                     >
-                    <select name="" id="planet">
+                    <select name="" id="planet" class="planets">
                         <option value="Earth">Earth</option>
                         <option value="Mercury">Mercury</option>
                         <option value="Venus">Venus</option>
@@ -31,7 +31,10 @@
                         <option value="Jupiter">Jupiter</option>
                         <option value="Uranus">Uranus</option>
                     </select>
-                    <button type="button">Satrt</button>
+                    <button type="button" class="action-button">
+                        Satrt
+                        <div dtat-state="stopped"></div>
+                    </button>
                 </form>
             </article>
         </main>
