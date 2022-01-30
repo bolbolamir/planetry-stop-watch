@@ -96,10 +96,12 @@ h6 {
 }
 
 .dash-board button:first-child {
-    background-color: transparent;
+    background-color: var(--primary-color-text);
     border: 2px solid;
     width: 50px;
     border-radius: 5000px;
+    color: var(--bg-color);
+
     height: 50px;
 }
 .dash-board button:first-child:focus {
@@ -108,8 +110,8 @@ h6 {
 }
 .dash-board button:first-child:focus,
 .dash-board button:first-child:hover {
-    color: var(--bg-color);
-    background-color: var(--primary-color-text);
+    color: var(--primary-color-text);
+    background-color: var(--bg-color);
 }
 
 .dash-board button:last-child {
@@ -134,11 +136,23 @@ h6 {
     background-color: var(--bg-color);
 }
 .dash-board .planet {
+        filter: blur(40px);
     width: 60px;
     height: 60px;
     animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
 }
-
+.dash-board .wrapper {
+    position: relative;
+}
+/* .dash-board .wrapper img:last-child {
+    position: absolute;
+    z-index: 0;
+} */
+.dash-board .wrapper img:first-child {
+    position: absolute;
+    z-index: 1;
+        filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
+}
 .card {
     width: calc(100% - 40px);
     position: absolute;
@@ -146,6 +160,7 @@ h6 {
     height: 50%;
     padding: 20px;
     margin: 20px;
+    overflow: hidden;
     background-color: var(--primary-color);
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(44, 44, 44, 0.075),
@@ -183,10 +198,12 @@ h6 {
     background-color: rgb(142, 236, 0);
 }
 .stop-watch {
+    position: relative;
+    z-index: 1;
     padding: 15px;
     display: block;
     width: 100%;
-    font-size: 4rem;
+    font-size: calc( 2.2rem + 5.3vw);
     font-weight: 500;
     min-width: fit-content;
     text-align: center;

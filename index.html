@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="preconnect"
+            href="https://img.icons8.com/color/50/000000/mars-planet.png"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -10,10 +14,9 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
-        <script src="main.js" type="module"></script>
         <title>Stop Watch</title>
     </head>
-    <body data-theme="light">
+    <body data-theme="dark">
         <main>
             <article class="card">
                 <form>
@@ -39,13 +42,24 @@
             </article>
         </main>
         <aside class="dash-board">
-            <button type="button" class="theme-toggle">toggle</button>
-            <img
-                class="planet"
-                alt=""
-                src="https://img.icons8.com/color/50/000000/mars-planet.png"
-            />
+            <button type="button" class="theme-toggle" onclick="toggleTheme()">
+                Toggle
+            </button>
+            <div class="wrapper">
+                <img
+                    class="planet"
+                    alt=""
+                    src="https://img.icons8.com/color/50/000000/mars-planet.png"
+                />
+                <img
+                    class="planet"
+                    alt=""
+                    src="https://img.icons8.com/color/50/000000/mars-planet.png"
+                />
+            </div>
+
             <button type="button" class="help-modal">?</button>
         </aside>
     </body>
+    <script src="main.js" type="module"></script>
 </html>
