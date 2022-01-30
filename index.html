@@ -20,7 +20,13 @@
         <main>
             <article class="card">
                 <form>
-                    <output class="stop-watch">00 : 00 : 00</output>
+                    <output class="stop-watch"
+                        ><span class="hour">00</span>
+                        <span class="colon">:</span>
+                        <span class="minute">00</span>
+                        <span class="colon">:</span>
+                        <span class="second">00</span></output
+                    >
                     <label for="planet" class="visually-hidden"
                         >Choose the planet in which you want to calculate
                         elapsed time</label
@@ -34,10 +40,15 @@
                         <option value="Jupiter">Jupiter</option>
                         <option value="Uranus">Uranus</option>
                     </select>
-                    <button type="button" class="action-button">
-                        Satrt
+                    <button
+                        type="button"
+                        class="action-button"
+                        onclick="toggleStopWatch(stopWatch)"
+                    >
+                        Start
                         <div dtat-state="stopped"></div>
                     </button>
+                    <button type="button" class="reset-buton" onclick="resetStopWatch(stopWatch)">Reset</button>
                 </form>
             </article>
         </main>
@@ -61,5 +72,5 @@
             <button type="button" class="help-modal">?</button>
         </aside>
     </body>
-    <script src="main.js" type="module"></script>
+    <script src="main.js"></script>
 </html>
