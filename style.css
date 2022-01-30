@@ -195,7 +195,7 @@ h6 {
     top: 0px;
 }
 .action-button > div[data-state="started"] {
-    background-color: rgb(142, 236, 0);
+    background-color: rgb(167, 223, 84);
 }
 .stop-watch {
     position: relative;
@@ -203,11 +203,17 @@ h6 {
     padding: 15px;
     display: block;
     width: 100%;
+    color: black;
     font-size: calc( 2.2rem + 5.3vw);
     font-weight: 500;
     min-width: fit-content;
     text-align: center;
     /* background-color: red; */
+}
+
+.colon {
+    display: inline-block;
+    transform: translateY(-1rem);
 }
 
 .planets {
@@ -228,4 +234,11 @@ h6 {
 .planets:focus {
     background-color: var(--bg-color);
     color: var(--primary-color-text);
+}
+
+.modal {
+    position: fixed;
+    top: 40%;
+    height: 10%;
+
 }
