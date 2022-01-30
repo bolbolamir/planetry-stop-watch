@@ -136,7 +136,7 @@ h6 {
     background-color: var(--bg-color);
 }
 .dash-board .planet {
-        filter: blur(40px);
+    filter: blur(40px);
     width: 60px;
     height: 60px;
     animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
@@ -151,7 +151,7 @@ h6 {
 .dash-board .wrapper img:first-child {
     position: absolute;
     z-index: 1;
-        filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
+    filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
 }
 .card {
     width: calc(100% - 40px);
@@ -204,7 +204,7 @@ h6 {
     display: block;
     width: 100%;
     color: black;
-    font-size: calc( 2.2rem + 5.3vw);
+    font-size: calc(2.2rem + 5.3vw);
     font-weight: 500;
     min-width: fit-content;
     text-align: center;
@@ -240,5 +240,23 @@ h6 {
     position: fixed;
     top: 40%;
     height: 10%;
+}
 
+.reset-buton {
+    border-radius: 99999px;
+    border: solid 1px black;
+    background-color: transparent;
+    position: absolute;
+    /* bottom: 2rem; */
+    font-size: 1.2rem;
+    z-index: 2;
+    /* width: clamp(10rem, 10rem + 200vw , 12rem); */
+    width: 6rem;
+    padding-top: 3px;
+}
+
+.reset-buton:hover,
+.reset-buton:focus {
+    background-color: var(--primary-color-text);
+    color: var(--bg-color);
 }
