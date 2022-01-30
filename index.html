@@ -14,7 +14,27 @@
         <title>Stop Watch</title>
     </head>
     <body data-theme="light">
-        <main></main>
+        <main>
+            <article class="card">
+                <form>
+                    <output class="strop-watch">00 : 00 : 00</output>
+                    <label for="planet" class="visually-hidden"
+                        >Choose the planet in which you want to calculate
+                        elapsed time</label
+                    >
+                    <select name="" id="planet">
+                        <option value="Earth">Earth</option>
+                        <option value="Mercury">Mercury</option>
+                        <option value="Venus">Venus</option>
+                        <option value="Moon">Moon</option>
+                        <option value="Mars">Mars</option>
+                        <option value="Jupiter">Jupiter</option>
+                        <option value="Uranus">Uranus</option>
+                    </select>
+                    <button type="button">Satrt</button>
+                </form>
+            </article>
+        </main>
         <aside class="dash-board">
             <button type="button" class="theme-toggle">toggle</button>
             <img
