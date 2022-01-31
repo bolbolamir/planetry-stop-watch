@@ -30,11 +30,7 @@
                     Timer application , choose planet and start counting time!
                 </h1>
                 <form>
-                    <button
-                        type="button"
-                        class="reset-buton"
-                        onclick="resetStopWatch(stopWatch)"
-                    >
+                    <button type="button" class="reset-button">
                         Reset <em class="visually-hidden">timer</em>
                     </button>
                     <div class="live-region" aria-live="off">
@@ -54,22 +50,13 @@
                     <label for="planet" class="visually-hidden"
                         >Choose a planet</label
                     >
-                    <select
-                        name=""
-                        id="planet"
-                        class="options"
-                        onchange="changePlanet(stopWatch)"
-                    >
+                    <select name="" id="planet" class="options">
                         <option value="Earth" selected>Earth</option>
                         <option value="Mercury">Mercury</option>
                         <option value="Moon">Moon</option>
                         <option value="Mars">Mars</option>
                     </select>
-                    <button
-                        type="button"
-                        class="action-button"
-                        onclick="toggleStopWatch(stopWatch)"
-                    >
+                    <button type="button" class="action-button">
                         Start <em class="visually-hidden">stop watch</em>
                         <div dtat-state="stopped"></div>
                     </button>
@@ -78,7 +65,7 @@
         </main>
         <aside class="dash-board">
             <h1 class="visually-hidden">Helpful buttons and options</h1>
-            <button type="button" class="theme-toggle" onclick="toggleTheme()">
+            <button type="button" class="theme-toggle">
                 Toggle <em class="visually-hidden">Theme</em>
             </button>
             <div class="wrapper" role="presentation" aria-hidden="true">
@@ -94,10 +81,14 @@
                 />
             </div>
 
-            <button type="button" class="modal-toggle" onclick="toggleModal()">
+            <button type="button" class="modal-toggle">
                 ? <em class="visually-hidden">Help</em>
             </button>
         </aside>
     </body>
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
+    <script src="theme.js" type="module"></script>
+    <script src="modal.js" type="module"></script>
+    <script src="planet.js" type="module"></script>
+    <script src="timer.js" type="module"></script>
 </html>
