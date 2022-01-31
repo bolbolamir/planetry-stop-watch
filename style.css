@@ -7,6 +7,7 @@
     white-space: nowrap;
     width: 1px;
 }
+
 /* Colors and*/
 body {
     --primary-color: #aaa7a7;
@@ -66,6 +67,7 @@ svg {
     display: block;
     max-width: 100%;
 }
+
 /*  */
 input,
 button,
@@ -73,6 +75,7 @@ textarea,
 select {
     font: inherit;
 }
+
 h1,
 h2,
 h3,
@@ -81,10 +84,19 @@ h5,
 h6 {
     overflow-wrap: break-word;
 }
+
+/* Media queries */
 /* desktop siznin MQ  */
 @media (min-width: 500px) {
     :root {
         font-size: 15px;
+    }
+}
+
+/* exteremly narrow width */
+@media (max-width: 300px) {
+    :root {
+        font-size: 8px;
     }
 }
 
@@ -106,6 +118,7 @@ h6 {
         transform: scale(1.2);
     }
 }
+
 /* components */
 /* Dash boared Component  */
 .dash-board {
@@ -120,6 +133,10 @@ h6 {
     justify-content: space-between;
 }
 
+.dash-board * {
+    font-display: swap;
+}
+
 .dash-board .theme-toggle {
     background-color: var(--primary-color-text);
     border: 2px solid;
@@ -128,19 +145,21 @@ h6 {
     color: var(--bg-color);
     height: 5rem;
 }
+
 .dash-board .theme-toggle:focus {
     opacity: 0.94;
     animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
 }
+
 .dash-board .theme-toggle:focus,
 .dash-board .theme-toggle:hover {
     color: var(--primary-color-text);
     background-color: var(--bg-color);
 }
 
-.dash-board .help-modal {
+.dash-board .modal-toggle {
     background-color: transparent;
-    border: 2px solid;
+    border: 2px solid var(--black-color);
     width: 5rem;
     font-size: 3rem;
     color: var(--bg-color);
@@ -149,21 +168,25 @@ h6 {
     border-radius: 5000px;
     height: 5rem;
 }
-.dash-board .help-modal:focus {
+
+.dash-board .modal-toggle:focus {
     opacity: 0.94;
     animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
 }
-.dash-board .help-modal:focus,
-.dash-board .help-modal:hover {
+
+.dash-board .modal-toggle:focus,
+.dash-board .modal-toggle:hover {
     color: var(--primary-color-text);
     background-color: var(--bg-color);
 }
-.dash-board .planet {
-    filter: blur(40px);
+
+.dash-board .movingImg {
+    filter: blur(4rem);
     width: 6rem;
     height: 6rem;
     animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
 }
+
 .dash-board .wrapper {
     position: relative;
 }
@@ -173,6 +196,7 @@ h6 {
     z-index: 1;
     filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
 }
+
 /* card component */
 .card {
     width: calc(100% - 4rem);
@@ -189,7 +213,7 @@ h6 {
         0 8px 8px rgba(0, 0, 0, 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
-.action-button {
+.card .action-button {
     border-radius: var(--border-radius-max);
     border: solid 1px var(--black-color);
     background-color: transparent;
@@ -201,24 +225,28 @@ h6 {
     padding-top: 0.3rem;
     left: calc(50% - 5rem);
 }
-.action-button:hover,
-.action-button:focus {
+
+.card .action-button:hover,
+.card .action-button:focus {
     background-color: var(--primary-color-text);
     color: var(--bg-color);
 }
-.action-button > div {
-    width: 10px;
+
+.card .action-button > div {
+    width: 1rem;
     background-color: var(--red-color);
-    height: 10px;
+    height: 1rem;
     position: absolute;
     border-radius: 50%;
-    right: 0px;
-    top: 0px;
+    right: -0.1rem;
+    top: -0.1rem;
 }
-.action-button > div[data-state="started"] {
+
+.card .action-button > div[data-state="started"] {
     background-color: var(--green-color);
 }
-.stop-watch {
+
+.card .timer {
     position: relative;
     z-index: 1;
     padding: 1.5rem;
@@ -231,12 +259,12 @@ h6 {
     text-align: center;
 }
 
-.colon {
+.card .timer > .colon {
     display: inline-block;
-    transform: translateY(-1rem);
+    transform: translateY(-0.6rem);
 }
 
-.planets {
+.card .options {
     padding-top: 0.35rem;
     position: absolute;
     bottom: 8rem;
@@ -250,33 +278,32 @@ h6 {
     color: var(--bg-color);
 }
 
-.planets:hover,
-.planets:focus {
+.card .options:hover,
+.card .options:focus {
     background-color: var(--bg-color);
     color: var(--primary-color-text);
 }
 
-.reset-buton {
+.card .reset-buton {
     border-radius: var(--border-radius-max);
     border: solid 1px var(--black-color);
     background-color: transparent;
     position: absolute;
-    /* bottom: 2rem; */
     font-size: 1.2rem;
     z-index: 2;
     margin-top: -1rem;
     margin-left: -1rem;
-    /* width: clamp(10rem, 10rem + 200vw , 12rem); */
     width: 6rem;
     padding-top: 0.3rem;
 }
 
-.reset-buton:hover,
-.reset-buton:focus {
+.card .reset-buton:hover,
+.card .reset-buton:focus {
     background-color: var(--primary-color-text);
     color: var(--bg-color);
 }
 
+/* modal component */
 .modal {
     position: fixed;
     background-color: transparent;
@@ -285,40 +312,43 @@ h6 {
     width: 100%;
     height: 30%;
     font-size: 2rem;
+    padding: 2rem;
     text-align: center;
 }
-/* .modal p {
-    visibility: hidden;
-    transition: visiblity 5s;
 
+body[data-modal="visible"] .modal {
+    color: var(--black-color);
 }
-body[data-modal="visible"] .modal p {
-    transition: visbility 5s;
-    /* opacity: 1; */
-/* visibility: visible;
-} */
 body[data-modal="hidden"] .modal {
     display: none;
 }
-body[data-modal="visible"] .card,
-body[data-modal="visible"] .dash-board :not(.help-modal) {
+
+body[data-modal="visible"] *:not(.modal) :not(.modal-toggle) {
     will-change: transform;
     will-change: filter;
     transition: filter 1s;
     pointer-events: none;
     filter: blur(14px);
 }
-body[data-modal="hidden"] .card,
-body[data-modal="visible"] .dash-board :not(.help-modal) {
+
+/* body[data-modal="visible"] .card,
+body[data-modal="visible"] .dash-board :not(.modal-toggle) {
+    will-change: transform;
+    will-change: filter;
+    transition: filter 1s;
+    pointer-events: none;
+    filter: blur(14px);
+} */
+
+body[data-modal="visible"] * :not(.modal-toggle) {
     will-change: transform;
     will-change: filter;
     transition: filter 1s;
 }
 
-body[data-modal="visible"] .help-modal {
+body[data-modal="visible"] .modal-toggle {
     /* color: white !important; */
     color: var(--red-color);
     padding-top: 0.5rem;
     font-size: 2rem;
-    /* text-align: center; */
 }
