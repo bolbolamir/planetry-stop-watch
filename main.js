@@ -82,13 +82,13 @@ let stopWatch = {
 };
 function toggleStopWatch(stopWatch) {
     let button = document.querySelector(".action-button");
+    let hour = document.querySelector(".card .hour");
+    let minute = document.querySelector(".card .minute");
+    let second = document.querySelector(".card .second");
     if (!stopWatch.isRunning) {
         button.childNodes[0].nodeValue = "Stop";
         button.children[0].dataset.state = "started";
         stopWatch.toggleStart();
-        let hour = document.querySelector(".card .hour");
-        let minute = document.querySelector(".card .minute");
-        let second = document.querySelector(".card .second");
         stopWatch.intervalIdDom = setInterval(() => {
             // hour.textContent = Math.floor()
             let minuteElapsed = Math.floor(
@@ -110,6 +110,9 @@ function toggleStopWatch(stopWatch) {
         button.children[0].dataset.state = "stopped";
         stopWatch.toggleStart();
         clearInterval(stopWatch.intervalIdDom);
+        let title = `Stop Watch - ${hour.textContent}:${minute.textContent}:${second.textContent}`;
+
+        document.title = title;
     }
 }
 
