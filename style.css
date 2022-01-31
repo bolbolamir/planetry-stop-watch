@@ -40,6 +40,7 @@
     }
 }
 body {
+    transition: filter 1s;
     --primary-color: #aaa7a7;
     --bg-color: #fcfcfc;
     --accent-color: ;
@@ -128,7 +129,6 @@ h6 {
 .dash-board button:last-child:focus {
     opacity: 0.94;
     animation: scaleUpAndDown 2.5s infinite alternate ease-in-out;
-    border-color: var(--outline-color);
 }
 .dash-board button:last-child:focus,
 .dash-board button:last-child:hover {
@@ -236,12 +236,6 @@ h6 {
     color: var(--primary-color-text);
 }
 
-.modal {
-    position: fixed;
-    top: 40%;
-    height: 10%;
-}
-
 .reset-buton {
     border-radius: 99999px;
     border: solid 1px black;
@@ -259,4 +253,42 @@ h6 {
 .reset-buton:focus {
     background-color: var(--primary-color-text);
     color: var(--bg-color);
+}
+
+.modal {
+    position: fixed;
+    /* background-color: ; */
+    background-color: transparent;
+    color: var(--primary-color-text);
+    top: 30%;
+    width: 100%;
+    height: 30%;
+    font-size: 5rem;
+    text-align: center;
+}
+/* .modal p {
+    visibility: hidden;
+    transition: visiblity 5s;
+
+}
+body[data-modal="visible"] .modal p {
+    transition: visbility 5s;
+    /* opacity: 1; */
+/* visibility: visible;
+} */
+body[data-modal="hidden"] .modal {
+    display: none;
+}
+body[data-modal="visible"] .card,
+body[data-modal="visible"] .dash-board :not(.help-modal) {
+    will-change: transform;
+    will-change: filter;
+    transition: filter 1s;
+    filter: blur(14px);
+}
+body[data-modal="hidden"] .card,
+body[data-modal="visible"] .dash-board :not(.help-modal) {
+    will-change: transform;
+    will-change: filter;
+    transition: filter 1s;
 }

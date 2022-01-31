@@ -11,7 +11,7 @@ let planets = [
     },
     {
         name: "Mercury",
-        factor: 1,
+        factor: 0.5,
         imageSrc: "https://i.postimg.cc/CdMvFM6Q/mercury.png",
     },
     {
@@ -21,7 +21,7 @@ let planets = [
     },
     {
         name: "Mars",
-        factor: 1,
+        factor: 0.2,
         imageSrc: "https://img.icons8.com/color/50/000000/mars-planet.png",
     },
 ];
@@ -74,7 +74,6 @@ let stopWatch = {
         this.currentElapsed = 0;
         this.totalElapsed = 0;
         this.startTime = 0;
-        this.elapsingFactor = 1;
         this.endTime = 0;
         this.intervalId = 0;
         this.intervalIdDom = 0;
@@ -137,5 +136,22 @@ function changePlanet(stopWatch) {
             images[0].src = iterator.imageSrc;
             images[1].src = iterator.imageSrc;
         }
+    }
+}
+function toggleModal() {
+    let body = document.querySelector("body");
+    let state = (body.dataset.modal =
+        body.dataset.modal == "hidden" ? "visible" : "hidden");
+    if (state == "visible") {
+        let article = document.createElement("article");
+        let p = document.createElement("p");
+        p.textContent =
+            "Welcome to my planetry stop-Watch! creator : amir-reza-tavakkoli@github";
+        article.appendChild(p);
+        article.className = "modal";
+        body.appendChild(article);
+    } else {
+        let closingModal = querySelector(".modal");
+        closingModal = null;
     }
 }
