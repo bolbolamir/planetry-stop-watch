@@ -3,6 +3,20 @@ function toggleTheme() {
     return (body.dataset.theme =
         body.dataset.theme == "dark" ? "light" : "dark");
 }
+// let planets = [{name:"Earth",factor:1,image:},{name:"",factor:1,image:},]
+(function setPreferedTheme() {
+    let preferedTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    preferedTheme.addEventListener("change", toggle);
+    function toggle(e) {
+        let body = document.querySelector("body");
+        if (preferedTheme.matches) {
+            body.dataset.theme == "dark" ? "Already dark" : toggleTheme();
+        } else {
+            body.dataset.theme == "dark" ? toggleTheme() : "Already light";
+        }
+    }
+    toggle();
+})();
 function toggleModal() {}
 let stopWatch = {
     currentElapsed: 0,
