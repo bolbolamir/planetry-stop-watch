@@ -98,6 +98,9 @@ h6 {
     :root {
         font-size: 8px;
     }
+    .card .timer {
+        font-size: 30rem;
+    }
 }
 
 /* Keyframe animations */
@@ -284,7 +287,7 @@ h6 {
     color: var(--primary-color-text);
 }
 
-.card .reset-buton {
+.card .reset-button {
     border-radius: var(--border-radius-max);
     border: solid 1px var(--black-color);
     background-color: transparent;
@@ -297,8 +300,8 @@ h6 {
     padding-top: 0.3rem;
 }
 
-.card .reset-buton:hover,
-.card .reset-buton:focus {
+.card .reset-button:hover,
+.card .reset-button:focus {
     background-color: var(--primary-color-text);
     color: var(--bg-color);
 }
