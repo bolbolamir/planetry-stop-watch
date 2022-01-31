@@ -22,7 +22,7 @@ let planets = [
     {
         name: "Mars",
         factor: 0.2,
-        imageSrc: "https://img.icons8.com/color/50/000000/mars-planet.png",
+        imageSrc: "https://img.icons8.com/color/50/000000/mars-movingImg.png",
     },
 ];
 function setPreferedTheme() {
@@ -85,10 +85,17 @@ function toggleStopWatch(stopWatch) {
     let hour = document.querySelector(".card .hour");
     let minute = document.querySelector(".card .minute");
     let second = document.querySelector(".card .second");
+
+    let liveText = document.querySelector(".card .timer");
+    let liveRegion = document.querySelector(".card .live-region");
     if (!stopWatch.isRunning) {
         button.childNodes[0].nodeValue = "Stop";
         button.children[0].dataset.state = "started";
         stopWatch.toggleStart();
+
+        liveRegion.ariaLive = "off";
+        liveText.ariaLabel = "0 seconds";
+
         stopWatch.intervalIdDom = setInterval(() => {
             // hour.textContent = Math.floor()
             let minuteElapsed = Math.floor(
@@ -111,12 +118,18 @@ function toggleStopWatch(stopWatch) {
         stopWatch.toggleStart();
         clearInterval(stopWatch.intervalIdDom);
         let title = `Stop Watch - ${hour.textContent}:${minute.textContent}:${second.textContent}`;
-
         document.title = title;
+
+        let liveString = `${second.textContent} seconds and ${minute.textContent}
+        minutes and ${hour.textContent} hours`;
+        liveText.ariaLabel = liveString;
+        liveRegion.ariaLive = "assertive";
     }
 }
 
 function resetStopWatch(stopWatch) {
+    let liveRegion = document.querySelector(".card .live-region");
+    let liveText = document.querySelector(".card .timer");
     let button = document.querySelector(".action-button");
     button.childNodes[0].nodeValue = "Start";
     button.children[0].dataset.state = "stopped";
@@ -124,14 +137,16 @@ function resetStopWatch(stopWatch) {
     clearInterval(stopWatch.intervalId);
     clearInterval(stopWatch.intervalIdDom);
     stopWatch.reset();
+    liveRegion.ariaLive = "off";
+    liveText.ariaLabel = "0 seconds";
     let hour = document.querySelector(".card .hour");
     let minute = document.querySelector(".card .minute");
     let second = document.querySelector(".card .second");
     hour.textContent = minute.textContent = second.textContent = "00";
 }
 function changePlanet(stopWatch) {
-    let images = document.querySelectorAll(".planet");
-    let planetsElement = document.querySelector(".planets");
+    let images = document.querySelectorAll(".movingImg");
+    let planetsElement = document.querySelector(".options");
     let planet = planetsElement.value;
     for (const iterator of planets) {
         if (planet == iterator.name) {
@@ -143,14 +158,14 @@ function changePlanet(stopWatch) {
 }
 function toggleModal() {
     let body = document.querySelector("body");
-    let helpButton = document.querySelector(".help-modal");
+    let helpButton = document.querySelector(".modal-toggle");
     let state = (body.dataset.modal =
         body.dataset.modal == "hidden" ? "visible" : "hidden");
     if (state == "visible") {
         let article = document.createElement("article");
         let p = document.createElement("p");
         p.textContent =
-            "Welcome to my planetry stop-Watch! creator : amir-reza-tavakkoli@github";
+            "Welcome to my planetry timer! creator : amir-reza-tavakkoli@github";
         article.appendChild(p);
         article.className = "modal";
         body.appendChild(article);
