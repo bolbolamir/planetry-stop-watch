@@ -26,29 +26,38 @@
     <body data-theme="dark" data-modal="hidden">
         <main>
             <article class="card">
+                <h1 class="visually-hidden">
+                    Timer application , choose planet and start counting time!
+                </h1>
                 <form>
                     <button
                         type="button"
                         class="reset-buton"
                         onclick="resetStopWatch(stopWatch)"
                     >
-                        Reset
+                        Reset <em class="visually-hidden">timer</em>
                     </button>
-                    <output class="stop-watch"
-                        ><span class="hour">00</span>
-                        <span class="colon">:</span>
-                        <span class="minute">00</span>
-                        <span class="colon">:</span>
-                        <span class="second">00</span></output
-                    >
+                    <div class="live-region" aria-live="off">
+                        <label for="timer" class="visually-hidden"
+                            >elapsed time is :</label
+                        >
+                        <output id="timer" class="timer" aria-label="0 seconds"
+                            ><span class="hour" role="presentation">00</span>
+                            <span class="colon" role="presentation">:</span>
+                            <span class="minute" role="presentation">00</span>
+                            <span class="colon" role="presentation">:</span>
+                            <span class="second" role="presentation"
+                                >00</span
+                            ></output
+                        >
+                    </div>
                     <label for="planet" class="visually-hidden"
-                        >Choose the planet in which you want to calculate
-                        elapsed time</label
+                        >Choose a planet</label
                     >
                     <select
                         name=""
                         id="planet"
-                        class="planets"
+                        class="options"
                         onchange="changePlanet(stopWatch)"
                     >
                         <option value="Earth" selected>Earth</option>
@@ -61,31 +70,32 @@
                         class="action-button"
                         onclick="toggleStopWatch(stopWatch)"
                     >
-                        Start
+                        Start <em class="visually-hidden">stop watch</em>
                         <div dtat-state="stopped"></div>
                     </button>
                 </form>
             </article>
         </main>
         <aside class="dash-board">
+            <h1 class="visually-hidden">Helpful buttons and options</h1>
             <button type="button" class="theme-toggle" onclick="toggleTheme()">
-                Toggle
+                Toggle <em class="visually-hidden">Theme</em>
             </button>
-            <div class="wrapper">
+            <div class="wrapper" role="presentation" aria-hidden="true">
                 <img
-                    class="planet"
+                    class="movingImg"
                     alt=""
                     src="https://i.postimg.cc/w770mfz5/earth-globe.png"
                 />
                 <img
-                    class="planet"
+                    class="movingImg"
                     alt=""
                     src="https://i.postimg.cc/w770mfz5/earth-globe.png"
                 />
             </div>
 
-            <button type="button" class="help-modal" onclick="toggleModal()">
-                ?
+            <button type="button" class="modal-toggle" onclick="toggleModal()">
+                ? <em class="visually-hidden">Help</em>
             </button>
         </aside>
     </body>
