@@ -3,6 +3,42 @@ function toggleTheme() {
     return (body.dataset.theme =
         body.dataset.theme == "dark" ? "light" : "dark");
 }
+let planets = [
+    {
+        name: "Earth",
+        factor: 1,
+        imageSrc: "https://i.postimg.cc/w770mfz5/earth-globe.png",
+    },
+    {
+        name: "Mercury",
+        factor: 0.5,
+        imageSrc: "https://i.postimg.cc/CdMvFM6Q/mercury.png",
+    },
+    {
+        name: "Moon",
+        factor: 2,
+        imageSrc: "https://i.postimg.cc/8fCwww6S/moon.png",
+    },
+    {
+        name: "Mars",
+        factor: 0.2,
+        imageSrc: "https://img.icons8.com/color/50/000000/mars-planet.png",
+    },
+];
+function setPreferedTheme() {
+    let preferedTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    preferedTheme.addEventListener("change", toggle);
+    function toggle(e) {
+        let body = document.querySelector("body");
+        if (preferedTheme.matches) {
+            body.dataset.theme == "dark" ? "Already dark" : toggleTheme();
+        } else {
+            body.dataset.theme == "dark" ? toggleTheme() : "Already light";
+        }
+    }
+    toggle();
+}
+setPreferedTheme();
 function toggleModal() {}
 let stopWatch = {
     currentElapsed: 0,
@@ -10,6 +46,7 @@ let stopWatch = {
     startTime: 0,
     endTime: 0,
     intervalId: 0,
+    elapsingFactor: 1,
     intervalIdDom: 0,
     isRunning: false,
     toggleStart() {
@@ -26,7 +63,8 @@ let stopWatch = {
             this.intervalId = setInterval(() => {
                 this.endTime = Date.now();
                 this.currentElapsed = Math.floor(
-                    (this.endTime - this.startTime) / 1000
+                    (this.endTime - this.startTime) /
+                        (1000 * this.elapsingFactor)
                 );
             }, 2);
             this.isRunning = true;
@@ -87,4 +125,33 @@ function resetStopWatch(stopWatch) {
     let minute = document.querySelector(".card .minute");
     let second = document.querySelector(".card .second");
     hour.textContent = minute.textContent = second.textContent = "00";
+}
+function changePlanet(stopWatch) {
+    let images = document.querySelectorAll(".planet");
+    let planetsElement = document.querySelector(".planets");
+    let planet = planetsElement.value;
+    for (const iterator of planets) {
+        if (planet == iterator.name) {
+            stopWatch.elapsingFactor = iterator.factor;
+            images[0].src = iterator.imageSrc;
+            images[1].src = iterator.imageSrc;
+        }
+    }
+}
+function toggleModal() {
+    let body = document.querySelector("body");
+    let state = (body.dataset.modal =
+        body.dataset.modal == "hidden" ? "visible" : "hidden");
+    if (state == "visible") {
+        let article = document.createElement("article");
+        let p = document.createElement("p");
+        p.textContent =
+            "Welcome to my planetry stop-Watch! creator : amir-reza-tavakkoli@github";
+        article.appendChild(p);
+        article.className = "modal";
+        body.appendChild(article);
+    } else {
+        let closingModal = querySelector(".modal");
+        closingModal = null;
+    }
 }
