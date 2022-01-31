@@ -1,45 +1,15 @@
-function toggleTheme() {
-    let body = document.querySelector("body");
-    return (body.dataset.theme =
-        body.dataset.theme == "dark" ? "light" : "dark");
-}
-let planets = [
-    {
-        name: "Earth",
-        factor: 1,
-        imageSrc: "https://i.postimg.cc/w770mfz5/earth-globe.png",
-    },
-    {
-        name: "Mercury",
-        factor: 0.5,
-        imageSrc: "https://i.postimg.cc/CdMvFM6Q/mercury.png",
-    },
-    {
-        name: "Moon",
-        factor: 2,
-        imageSrc: "https://i.postimg.cc/8fCwww6S/moon.png",
-    },
-    {
-        name: "Mars",
-        factor: 0.2,
-        imageSrc: "https://img.icons8.com/color/50/000000/mars-movingImg.png",
-    },
-];
-function setPreferedTheme() {
-    let preferedTheme = window.matchMedia("(prefers-color-scheme: dark)");
-    preferedTheme.addEventListener("change", toggle);
-    function toggle(e) {
-        let body = document.querySelector("body");
-        if (preferedTheme.matches) {
-            body.dataset.theme == "dark" ? "Already dark" : toggleTheme();
-        } else {
-            body.dataset.theme == "dark" ? toggleTheme() : "Already light";
-        }
-    }
-    toggle();
-}
-setPreferedTheme();
-function toggleModal() {}
+import { setPreferedTheme, toggleTheme } from "./theme.js";
+import { toggleModal } from "./modal.js";
+import { changePlanet } from "./planet.js";
+import { resetStopWatch, toggleStopWatch } from "./timer.js";
+
+// Todo :
+// - accessible modal and tab order and focus managment for KB users
+// - fix blur animation
+// - better nameing
+// - refactoring JS
+// - find and fix typos
+
 let stopWatch = {
     currentElapsed: 0,
     totalElapsed: 0,
@@ -80,100 +50,30 @@ let stopWatch = {
         this.isRunning = false;
     },
 };
-function toggleStopWatch(stopWatch) {
-    let button = document.querySelector(".action-button");
-    let hour = document.querySelector(".card .hour");
-    let minute = document.querySelector(".card .minute");
-    let second = document.querySelector(".card .second");
 
-    let liveText = document.querySelector(".card .timer");
-    let liveRegion = document.querySelector(".card .live-region");
-    if (!stopWatch.isRunning) {
-        button.childNodes[0].nodeValue = "Stop";
-        button.children[0].dataset.state = "started";
-        stopWatch.toggleStart();
+let actionButton = document.querySelector(".card .action-button");
+actionButton.addEventListener("click", () => {
+    toggleStopWatch(stopWatch);
+});
 
-        liveRegion.ariaLive = "off";
-        liveText.ariaLabel = "0 seconds";
+let themeToggle = document.querySelector(".dash-board .theme-toggle");
+themeToggle.addEventListener("click", () => {
+    toggleTheme();
+});
 
-        stopWatch.intervalIdDom = setInterval(() => {
-            // hour.textContent = Math.floor()
-            let minuteElapsed = Math.floor(
-                (stopWatch.totalElapsed + stopWatch.currentElapsed) / 60
-            );
-            let secondsElapsed =
-                stopWatch.totalElapsed + (stopWatch.currentElapsed % 60);
-            minute.textContent =
-                minuteElapsed.toString().length == 1
-                    ? `0${minuteElapsed}`
-                    : minuteElapsed;
-            second.textContent =
-                secondsElapsed.toString().length == 1
-                    ? `0${secondsElapsed}`
-                    : secondsElapsed;
-        }, 2);
-    } else {
-        button.childNodes[0].nodeValue = "Start";
-        button.children[0].dataset.state = "stopped";
-        stopWatch.toggleStart();
-        clearInterval(stopWatch.intervalIdDom);
-        let title = `Stop Watch - ${hour.textContent}:${minute.textContent}:${second.textContent}`;
-        document.title = title;
+let modalToggle = document.querySelector(".dash-board .modal-toggle");
+modalToggle.addEventListener("click", () => {
+    toggleModal();
+});
 
-        let liveString = `${second.textContent} seconds and ${minute.textContent}
-        minutes and ${hour.textContent} hours`;
-        liveText.ariaLabel = liveString;
-        liveRegion.ariaLive = "assertive";
-    }
-}
+let resetButton = document.querySelector(".card .reset-button");
+resetButton.addEventListener("click", () => {
+    resetStopWatch(stopWatch);
+});
 
-function resetStopWatch(stopWatch) {
-    let liveRegion = document.querySelector(".card .live-region");
-    let liveText = document.querySelector(".card .timer");
-    let button = document.querySelector(".action-button");
-    button.childNodes[0].nodeValue = "Start";
-    button.children[0].dataset.state = "stopped";
-    stopWatch.toggleStart();
-    clearInterval(stopWatch.intervalId);
-    clearInterval(stopWatch.intervalIdDom);
-    stopWatch.reset();
-    liveRegion.ariaLive = "off";
-    liveText.ariaLabel = "0 seconds";
-    let hour = document.querySelector(".card .hour");
-    let minute = document.querySelector(".card .minute");
-    let second = document.querySelector(".card .second");
-    hour.textContent = minute.textContent = second.textContent = "00";
-}
-function changePlanet(stopWatch) {
-    let images = document.querySelectorAll(".movingImg");
-    let planetsElement = document.querySelector(".options");
-    let planet = planetsElement.value;
-    for (const iterator of planets) {
-        if (planet == iterator.name) {
-            stopWatch.elapsingFactor = iterator.factor;
-            images[0].src = iterator.imageSrc;
-            images[1].src = iterator.imageSrc;
-        }
-    }
-}
-function toggleModal() {
-    let body = document.querySelector("body");
-    let helpButton = document.querySelector(".modal-toggle");
-    let state = (body.dataset.modal =
-        body.dataset.modal == "hidden" ? "visible" : "hidden");
-    if (state == "visible") {
-        let article = document.createElement("article");
-        let p = document.createElement("p");
-        p.textContent =
-            "Welcome to my planetry timer! creator : amir-reza-tavakkoli@github";
-        article.appendChild(p);
-        article.className = "modal";
-        body.appendChild(article);
-        helpButton.textContent = "❌";
-    } else {
-        let closingModal = document.querySelector(".modal");
-        closingModal = null;
-        helpButton.textContent = "?";
-        console.log("hhh");
-    }
-}
+let optionsList = document.querySelector(".card .options");
+optionsList.addEventListener("change", () => {
+    changePlanet(stopWatch);
+});
+
+setPreferedTheme();
