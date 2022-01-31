@@ -12,6 +12,11 @@
     font-weight: bold;
     height: 100%;
 }
+@media (min-width : 500px) {
+    :root {
+        font-size: 15px;
+    }
+}
 *,
 *::before,
 *::after {
@@ -85,9 +90,9 @@ h6 {
 }
 
 .dash-board {
-    padding: 20px;
-    padding-right: 30px;
-    padding-left: 30px;
+    padding: 2rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
     position: fixed;
     width: 100%;
     bottom: 0%;
@@ -99,11 +104,11 @@ h6 {
 .dash-board button:first-child {
     background-color: var(--primary-color-text);
     border: 2px solid;
-    width: 50px;
+    width: 5rem;
     border-radius: 5000px;
     color: var(--bg-color);
 
-    height: 50px;
+    height: 5rem;
 }
 .dash-board button:first-child:focus {
     opacity: 0.94;
@@ -118,13 +123,13 @@ h6 {
 .dash-board button:last-child {
     background-color: transparent;
     border: 2px solid;
-    width: 50px;
+    width: 5rem;
     font-size: 3rem;
     color: var(--bg-color);
     background-color: var(--primary-color-text);
     padding-top: 3px;
     border-radius: 5000px;
-    height: 50px;
+    height: 5rem;
 }
 .dash-board button:last-child:focus {
     opacity: 0.94;
@@ -137,8 +142,8 @@ h6 {
 }
 .dash-board .planet {
     filter: blur(40px);
-    width: 60px;
-    height: 60px;
+    width: 6rem;
+    height: 6rem;
     animation: transformYUpAndDown 2.5s infinite alternate ease-in-out;
 }
 .dash-board .wrapper {
@@ -154,15 +159,15 @@ h6 {
     filter: drop-shadow(0px 0px 25px hsl(0deg 0% 0% / 0.3));
 }
 .card {
-    width: calc(100% - 40px);
+    width: calc(100% - 4rem);
     position: absolute;
     top: 10%;
     height: 50%;
-    padding: 20px;
-    margin: 20px;
+    padding: 2rem;
+    margin: 2rem;
     overflow: hidden;
     background-color: var(--primary-color);
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 0 1px 1px rgba(44, 44, 44, 0.075),
         0 2px 2px rgba(24, 23, 23, 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
         0 8px 8px rgba(0, 0, 0, 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
@@ -177,7 +182,7 @@ h6 {
     font-size: 1.8rem;
     /* width: clamp(10rem, 10rem + 200vw , 12rem); */
     width: 10rem;
-    padding-top: 3px;
+    padding-top: 0.3rem;
     left: calc(50% - 5rem);
 }
 .action-button:hover,
@@ -200,7 +205,7 @@ h6 {
 .stop-watch {
     position: relative;
     z-index: 1;
-    padding: 15px;
+    padding: 1.5rem;
     display: block;
     width: 100%;
     color: black;
@@ -208,7 +213,6 @@ h6 {
     font-weight: 500;
     min-width: fit-content;
     text-align: center;
-    /* background-color: red; */
 }
 
 .colon {
@@ -217,14 +221,14 @@ h6 {
 }
 
 .planets {
-    padding-top: 3.5px;
+    padding-top: 0.35rem;
     position: absolute;
     bottom: 8rem;
     width: 16rem;
     height: 3.3rem;
     left: calc(50% - 8rem);
     font-size: 2rem;
-    padding-left: 8px;
+    padding-left: 0.8rem;
     border-radius: 99999px;
     background-color: var(--primary-color-text);
     color: var(--bg-color);
@@ -246,7 +250,7 @@ h6 {
     z-index: 2;
     /* width: clamp(10rem, 10rem + 200vw , 12rem); */
     width: 6rem;
-    padding-top: 3px;
+    padding-top: 0.3rem;
 }
 
 .reset-buton:hover,
