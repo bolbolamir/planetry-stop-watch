@@ -143,6 +143,7 @@ function changePlanet(stopWatch) {
 }
 function toggleModal() {
     let body = document.querySelector("body");
+    let helpButton = document.querySelector(".help-modal");
     let state = (body.dataset.modal =
         body.dataset.modal == "hidden" ? "visible" : "hidden");
     if (state == "visible") {
@@ -153,8 +154,11 @@ function toggleModal() {
         article.appendChild(p);
         article.className = "modal";
         body.appendChild(article);
+        helpButton.textContent = "❌";
     } else {
-        let closingModal = querySelector(".modal");
+        let closingModal = document.querySelector(".modal");
         closingModal = null;
+        helpButton.textContent = "?";
+        console.log("hhh");
     }
 }
