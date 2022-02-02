@@ -8,17 +8,19 @@ function toggleModal() {
     if (state == "visible") {
         let article = document.createElement("article");
         let p = document.createElement("p");
-
-        p.textContent =
-            "Welcome to my planetry timer! creator : amir-reza-tavakkoli@github";
-
+        let a = document.createElement("a");
+        article.ariaRoleDescription = "modal";
+        a.href = "https://github.com/amir-reza-tavakkoli";
+        p.textContent = "Welcome to my planetry timer! creator : ";
+        a.textContent = "Amir-Reza-Tavakkoli";
+        p.appendChild(a);
         article.appendChild(p);
         article.className = "modal";
         body.appendChild(article);
         helpButton.textContent = "❌";
     } else {
         let closingModal = document.querySelector(".modal");
-
+        // helpButton.focus();
         closingModal.remove();
         helpButton.textContent = "?";
     }
