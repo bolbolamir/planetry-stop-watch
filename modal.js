@@ -19,7 +19,7 @@ function toggleModal() {
     } else {
         let closingModal = document.querySelector(".modal");
 
-        closingModal = null;
+        closingModal.remove();
         helpButton.textContent = "?";
     }
 }
