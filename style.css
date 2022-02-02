@@ -142,11 +142,14 @@ h6 {
 
 .dash-board .theme-toggle {
     background-color: var(--primary-color-text);
-    border: 2px solid;
+    border: none;
     width: 5rem;
     border-radius: var(--border-radius-max);
     color: var(--bg-color);
     height: 5rem;
+    box-shadow: 0 1px 1px rgba(44, 44, 44, 0.075),
+        0 2px 2px rgba(24, 23, 23, 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px rgba(0, 0, 0, 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
 .dash-board .theme-toggle:focus {
@@ -156,13 +159,14 @@ h6 {
 
 .dash-board .theme-toggle:focus,
 .dash-board .theme-toggle:hover {
+    border: solid 2px;
     color: var(--primary-color-text);
     background-color: var(--bg-color);
 }
 
 .dash-board .modal-toggle {
     background-color: transparent;
-    border: 2px solid var(--black-color);
+    border: 2px solid var(--primary-color-text);
     width: 5rem;
     font-size: 3rem;
     color: var(--bg-color);
@@ -170,6 +174,9 @@ h6 {
     padding-top: 0.4rem;
     border-radius: 5000px;
     height: 5rem;
+    box-shadow: 0 1px 1px rgba(44, 44, 44, 0.075),
+        0 2px 2px rgba(24, 23, 23, 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px rgba(0, 0, 0, 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
 .dash-board .modal-toggle:focus {
@@ -310,7 +317,7 @@ h6 {
 .modal {
     position: fixed;
     background-color: transparent;
-    color: var(--primary-color-text);
+    color: var(--black-color);
     top: 20%;
     width: 100%;
     height: 30%;
@@ -319,38 +326,30 @@ h6 {
     text-align: center;
 }
 
-body[data-modal="visible"] .modal {
-    color: var(--black-color);
-}
-body[data-modal="hidden"] .modal {
-    display: none;
+.modal > a {
+    display: inline-block;
 }
 
-body[data-modal="visible"] *:not(.modal) :not(.modal-toggle) {
-    will-change: transform;
+.card,
+.dash-board {
     will-change: filter;
-    transition: filter 1s;
-    pointer-events: none;
+}
+
+*:not(.modal) {
+    transition: filter 1s ease-out;
+}
+
+body[data-modal="visible"] .card {
+    transition: filter 1s ease-in;
     filter: blur(14px);
 }
 
-/* body[data-modal="visible"] .card,
 body[data-modal="visible"] .dash-board :not(.modal-toggle) {
-    will-change: transform;
-    will-change: filter;
-    transition: filter 1s;
-    pointer-events: none;
+    transition: filter 1s ease-in;
     filter: blur(14px);
-} */
-
-body[data-modal="visible"] * :not(.modal-toggle) {
-    will-change: transform;
-    will-change: filter;
-    transition: filter 1s;
 }
 
 body[data-modal="visible"] .modal-toggle {
-    /* color: white !important; */
     color: var(--red-color);
     padding-top: 0.5rem;
     font-size: 2rem;
