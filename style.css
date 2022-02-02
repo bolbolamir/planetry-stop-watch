@@ -325,7 +325,10 @@ h6 {
     padding: 2rem;
     text-align: center;
 }
-
+.modal p {
+    opacity: 0;
+    transition: opacity 1s;
+}
 .modal > a {
     display: inline-block;
 }
@@ -336,13 +339,15 @@ h6 {
 }
 
 body * :not(.modal) {
-    transition: filter 1s ease-out;
+    transition: filter 1s ease-out, opacity 1s;
+}
+body[data-modal="visible"] .modal p[data-state="visible"] {
+    opacity: 1;
 }
 
 body[data-modal="visible"] .card {
     transition: filter 1s ease-in;
     filter: blur(14px);
-
 }
 
 body[data-modal="visible"] .dash-board :not(.modal-toggle) {

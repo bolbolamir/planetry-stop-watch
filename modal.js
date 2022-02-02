@@ -13,6 +13,8 @@ function toggleModal() {
         a.href = "https://github.com/amir-reza-tavakkoli";
         p.textContent = "Welcome to my planetry timer! creator : ";
         a.textContent = "Amir-Reza-Tavakkoli";
+        p.dataset.state = "hidden"
+        setTimeout(() => {p.dataset.state = "visible"},0)
         p.appendChild(a);
         article.appendChild(p);
         article.className = "modal";
@@ -21,7 +23,10 @@ function toggleModal() {
     } else {
         let closingModal = document.querySelector(".modal");
         // helpButton.focus();
-        closingModal.remove();
+        let p = document.querySelector(".modal p")
+        p.dataset.state = "hidden"
+
+        setTimeout(()=> {closingModal.remove();},1000)
         helpButton.textContent = "?";
     }
 }
