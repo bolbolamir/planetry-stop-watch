@@ -51,7 +51,7 @@ body[data-theme="dark"] {
 }
 
 body {
-    transition: filter 1s;
+    transition: background-color 1s;
     color: var(--primary-color-text);
     background-color: var(--bg-color);
     border-color: var(--primary-color-text);
@@ -335,13 +335,14 @@ h6 {
     will-change: filter;
 }
 
-*:not(.modal) {
+body * :not(.modal) {
     transition: filter 1s ease-out;
 }
 
 body[data-modal="visible"] .card {
     transition: filter 1s ease-in;
     filter: blur(14px);
+
 }
 
 body[data-modal="visible"] .dash-board :not(.modal-toggle) {
@@ -353,4 +354,7 @@ body[data-modal="visible"] .modal-toggle {
     color: var(--red-color);
     padding-top: 0.5rem;
     font-size: 2rem;
+}
+.body {
+    transition: background-color 1s;
 }
